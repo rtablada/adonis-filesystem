@@ -78,6 +78,20 @@ yield File.get('app.js')
 
 This will use the default connection to read a file named `app.js`.
 
+## Use - Uploading Files
+
+Uploading files can be a chore, by using the `upload` method, the Filesystem package will use streams to upload a file from `request.file` to the final upload destination:
+
+```js
+const File = use('File') // or use('AdonisFilesystem/Filesystem') if you did not install the alias
+const avatar = request.file('avatar', {
+    maxSize: '2mb',
+    allowedExtensions: ['jpg', 'png', 'jpeg']
+})
+
+yield File.upload(avatar.clientName(), avatar)
+```
+
 ## Use - Other Connectors
 
 To use other connectors, use the `connection` method on the file instance.

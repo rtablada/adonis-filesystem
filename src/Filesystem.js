@@ -1,4 +1,5 @@
 const LocalFilesystem = require('./LocalFilesystem')
+const fs = require('fs')
 
 class Filesystem {
   constructor(config, name) {
@@ -32,8 +33,18 @@ class Filesystem {
     return this.buildConnection().put(name, contents, options)
   }
 
+  putStream(name, stream) {
+    return this.buildConnection().putStream(name, stream)
+  }
+
   get(name, options) {
     return this.buildConnection().get(name, options)
+  }
+
+  upload(name, file) {
+    const tmpStream = fs.createReadStream(file.tmpPath())
+
+    return this.putStream(name, tmpStream)
   }
 }
 
