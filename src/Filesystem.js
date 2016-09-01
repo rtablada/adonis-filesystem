@@ -1,5 +1,6 @@
 const LocalFilesystem = require('./LocalFilesystem')
 const fs = require('fs')
+const CloudFilesystem = require('./CloudFilesystem')
 
 class Filesystem {
   constructor(config, name) {
@@ -22,6 +23,10 @@ class Filesystem {
       Filesystem.connections[this.name] = instance
 
       return instance
+    } else if (connectionConfig.driver === 'pkgcloud') {
+      const instance = new CloudFilesystem(connectionConfig)
+
+      Filesystem.connections[this.name] = instance
     }
   }
 

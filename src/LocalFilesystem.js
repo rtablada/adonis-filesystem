@@ -31,6 +31,10 @@ class LocalFilesystem {
     })
   }
 
+  getStream(name) {
+    return fs.createReadStream(this.getFileName(name))
+  }
+
   put(name, contents, options) {
     options = options || this.config.options
     return thunkify(fs.writeFile)(this.getFileName(name), contents, options)
