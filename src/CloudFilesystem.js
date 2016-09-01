@@ -48,10 +48,10 @@ class CloudFilesystem {
   //   return thunkify(fs.writeFile)(this.getFileName(name), contents, options)
   // }
 
-  get(name, options) {
-    options = options !== undefined ? options : this.config.options
-    return thunkify(fs.readFile)(this.getFileName(name), options)
-  }
+  // get(name, options) {
+  //   options = options !== undefined ? options : this.config.options
+  //   return thunkify(fs.readFile)(this.getFileName(name), options)
+  // }
 }
 
 module.exports = CloudFilesystem

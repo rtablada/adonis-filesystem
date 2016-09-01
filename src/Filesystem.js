@@ -46,7 +46,12 @@ class Filesystem {
     return this.buildConnection().get(name, options)
   }
 
+  getStream(name, options) {
+    return this.buildConnection().getStream(name, options)
+  }
+
   upload(name, file) {
+    console.log(name);
     const tmpStream = fs.createReadStream(file.tmpPath())
 
     return this.putStream(name, tmpStream)
